@@ -9,8 +9,6 @@ Links:
 ---
 [Visit Website](https://www.freecodecamp.org "FCC")
 ---
-
-Images:
 ![FCC Lgo](https://res.cloudinary.com/practicaldev/image/fetch/s--MYZ584sb--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://secure.meetupstatic.com/photos/event/4/c/b/b/600_468259643.jpeg "FCC")
 
 
@@ -22,8 +20,11 @@ console.log(name);
 ~~~
 
 Table:
+
 |Here|Is|Table|
+
 |---|---|---|
+
 |One|Two|Three| 
 
 > Keep Smiling and work harder.
