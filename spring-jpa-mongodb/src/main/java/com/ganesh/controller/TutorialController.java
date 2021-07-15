@@ -3,6 +3,7 @@ package com.ganesh.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -73,7 +74,13 @@ public class TutorialController {
 
 	  @DeleteMapping("/tutorials/{id}")
 	  public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") String id) {
-	    
+		  Optional<Tutorial> singleTute = tutorialRepository.findById(id);
+		    if(singleTute.isPresent()) {
+		    	tutorialRepository.deleteById(id);
+		    }else {
+		    	throw new RuntimeException("No Tutorails Found with this id: "+ id);
+		    } 
+		    return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
 	  }
 
 	  @DeleteMapping("/tutorials")
@@ -82,8 +89,10 @@ public class TutorialController {
 	  }
 
 	  @GetMapping("/tutorials/published")
-	  public ResponseEntity<List<Tutorial>> findByPublished() {
-	    
+	  public ResponseEntity<List<Tutorial>> findByPublishedTutorials() {
+		 boolean published = true;
+	     List<Tutorial> tutorialList = tutorialRepository.findByPublished(published); 
+	     return new ResponseEntity<List<Tutorial>>(tutorialList, HttpStatus.OK);
 	  }
 	
 	
