@@ -43,19 +43,32 @@ public class TutorialController {
 	    if(singleTute.isPresent()) {
 	    	tutorial = singleTute.get();
 	    }else {
-	    	throw new RuntimeException("No Tutorails Found with this id");
+	    	throw new RuntimeException("No Tutorails Found with this id: "+ id);
 	    }
 	    return new ResponseEntity<Tutorial>(tutorial, HttpStatus.OK);
 	  }
 
 	  @PostMapping("/tutorials")
 	  public ResponseEntity<Tutorial> createTutorial(@RequestBody Tutorial tutorial) {
-	    
+		  Tutorial newTutorail = tutorialRepository.insert(tutorial);
+	      return new ResponseEntity<Tutorial>(newTutorail, HttpStatus.CREATED);
 	  }
 
 	  @PutMapping("/tutorials/{id}")
 	  public ResponseEntity<Tutorial> updateTutorial(@PathVariable("id") String id, @RequestBody Tutorial tutorial) {
-	    
+		  Optional<Tutorial> singleTute = tutorialRepository.findById(id);
+		    Tutorial tutl = null;
+		    if(singleTute.isPresent()) {
+		    	tutl = singleTute.get();
+		    	Tutorial newtutorial = new Tutorial();
+		    	newtutorial.setTitle(tutl.getTitle());
+		    	newtutorial.setDescription(tutl.getDescription());
+		    	newtutorial.setPublished(tutl.isPublished());
+		    	tutorialRepository.insert(newtutorial);
+		    }else {
+		    	throw new RuntimeException("No Tutorails Found with this id: "+ id);
+		    }
+		    return new ResponseEntity<Tutorial>(tutl, HttpStatus.OK); 
 	  }
 
 	  @DeleteMapping("/tutorials/{id}")
