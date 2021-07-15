@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 public class Tutorial {
 	
 	@Id
-	@Field("tutorial_id")
 	private String id;
 	
 	@Field("title")
