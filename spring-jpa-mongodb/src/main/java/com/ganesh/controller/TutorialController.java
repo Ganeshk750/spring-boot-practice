@@ -85,9 +85,11 @@ public class TutorialController {
 
 	  @DeleteMapping("/tutorials")
 	  public ResponseEntity<HttpStatus> deleteAllTutorials() {
-	    
+	    tutorialRepository.deleteAll();
+	    return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
 	  }
 
+	  
 	  @GetMapping("/tutorials/published")
 	  public ResponseEntity<List<Tutorial>> findByPublishedTutorials() {
 		 boolean published = true;
