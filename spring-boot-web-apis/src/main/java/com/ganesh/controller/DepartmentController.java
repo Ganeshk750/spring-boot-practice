@@ -20,7 +20,7 @@ import com.ganesh.repository.DepartmentRepository;
 
 import lombok.RequiredArgsConstructor;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/dep/v1")
 @RequiredArgsConstructor

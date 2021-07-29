@@ -6,8 +6,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -87,5 +89,19 @@ public class EmployeeController {
 		fos.close();
 		return new ResponseEntity<Object>("The Photo Uploaded Successfully", HttpStatus.OK);
 	}
+	
+	//root path for image files
+    private String FILE_PATH_ROOT = "D:\\Java Video\\SpringBootPractice\\spring-boot-practice\\spring-boot-web-apis\\src\\main\\resources\\upload\\";
+    
+    @GetMapping("/{filename}")
+    public ResponseEntity<byte[]> getImage(@PathVariable("filename") String filename) {
+        byte[] image = new byte[0];
+        try {
+            image = FileUtils.readFileToByteArray(new File(FILE_PATH_ROOT+filename));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
+    }
 
 }
