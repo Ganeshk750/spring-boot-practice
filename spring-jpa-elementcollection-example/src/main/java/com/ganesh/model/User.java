@@ -19,7 +19,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -27,7 +26,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "users")
 @NoArgsConstructor
-@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,6 +53,16 @@ public class User {
             @AttributeOverride(name = "addressLine2", column = @Column(name = "street"))
     })
     private Set<Address> addresses = new HashSet<>();
+
+    public User(String name, String email, Set<String> phoneNumbers, Set<Address> addresses) {
+        this.name = name;
+        this.email = email;
+        this.phoneNumbers = phoneNumbers;
+        this.addresses = addresses;
+    }
+
+    
+    
     
 }
 
