@@ -39,7 +39,7 @@ public class SpringJpaElementcollectionExampleApplication implements CommandLine
 	        addresses.add(new Address("Plot No 44", "Electronic City", "Bangalore",
 	                "Karnataka", "India", "560001"));
 
-	        User user = new User("Rajeev Kumar Singh", "rajeev@callicoder.com",
+	        User user = new User("Ganesh Kumar", "ganesh@abc.com",
 	                phoneNumbers, addresses);
 
 	        userRepository.save(user);
