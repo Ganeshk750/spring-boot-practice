@@ -32,6 +32,8 @@ public class SpringJpaElementcollectionExampleApplication implements CommandLine
 	        Set<String> phoneNumbers = new HashSet<>();
 	        phoneNumbers.add("+91-9999999999");
 	        phoneNumbers.add("+91-9898989898");
+	        phoneNumbers.add("+91-9898989898");
+	        phoneNumbers.add("+91-9999999999");
 
 	        Set<Address> addresses = new HashSet<>();
 	        addresses.add(new Address("747", "Golf View Road", "Bangalore",
